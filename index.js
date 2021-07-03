@@ -1,6 +1,5 @@
 const express = require('express')
 const cors = require('cors')
-const morgan = require('morgan')
 const pool = require('./config/dbconfig')
 const port = 3000
 const prefix = '/api/v1'
