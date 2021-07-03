@@ -26,6 +26,7 @@ app.get(`${prefix}/workcity`, (req, res) => {
     pool.getConnection((err, con) => {
         if(err){
             console.log(err)
+            res.send(err)
         }else{
             console.log('db connected')
             // const data = req.body
