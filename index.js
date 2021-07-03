@@ -18,7 +18,7 @@ app.use(function(req, res, next) {
 
 app.get(`${prefix}`, (req, res) => {
     // res.send(`${prefix}/${port}`)
-    res.status(200).json({
+    res.status(200).jsonp({
         msg: 'Index route',
         host: process.env.HOST,
         host: process.env.HOST,
