@@ -18,14 +18,16 @@ function admin(){
         pool.getConnection((err, con) => {
             if(err){
                 res.status(500).json({
-                    message: "Internal Server Error"
+                    message: "Internal Server Error",
+                    error: err.message
                 })
             }else{
                 // console.log(data)
                 con.query('SELECT * FROM associates WHERE email = ?', (data.email), (err, user) => {
                     if(err){
                         res.status(500).json({
-                            message: "Internal Server Error"
+                            message: "Internal Server Error",
+                            error: err.message
                         })
                     }else if (user.length < 0.5){
                         res.status(403).json({
