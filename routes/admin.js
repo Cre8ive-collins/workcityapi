@@ -14,8 +14,7 @@ function admin(){
         const data = req.body
         const request = req
         res.status(201).json({
-            formBody: data,
-            requestObject: request
+            formBody: data
         })
     })
 
