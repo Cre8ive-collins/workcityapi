@@ -7,9 +7,14 @@ const prefix = '/api/v1'
 
 const app = express()
 app.use(cors())
-app.use(morgan('combined'))
 app.use(express.urlencoded({extended: true}));
 app.use(express.json())
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 
 app.get(`${prefix}`, (req, res) => {
     // res.send(`${prefix}/${port}`)
