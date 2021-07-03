@@ -27,7 +27,8 @@ function admin(){
                     if(err){
                         res.status(500).json({
                             message: "Internal Server Error",
-                            error: err.message
+                            error: err.message,
+                            data : req.body
                         })
                     }else if (user.length < 0.5){
                         res.status(403).json({
