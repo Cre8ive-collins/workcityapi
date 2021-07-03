@@ -33,6 +33,9 @@ app.get(`${prefix}`, (req, res) => {
     })
 })
 
+const admin = require('./routes/admin')
+app.use('/admin', admin)
+
 app.get(`${prefix}/workcity`, (req, res) => {
     pool.getConnection((err, con) => {
         if(err){
@@ -48,6 +51,8 @@ app.get(`${prefix}/workcity`, (req, res) => {
         }
     } )
 })
+
+
 
 app.listen(port, () => {
     console.log(`App running on port ${port}`)
