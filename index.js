@@ -3,6 +3,7 @@ const cors = require('cors')
 const pool = require('./config/dbconfig')
 const port = 3000
 const prefix = ''
+require('dotenv').config()
 
 const app = express()
 app.use(cors())
@@ -18,7 +19,9 @@ app.use(function(req, res, next) {
 app.get(`${prefix}`, (req, res) => {
     // res.send(`${prefix}/${port}`)
     res.status(200).json({
-        msg: 'Index route'
+        msg: 'Index route',
+        host: process.env.HOST
+
     })
 })
 
