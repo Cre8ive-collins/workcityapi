@@ -2,7 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const pool = require('./config/dbconfig')
 const port = 3000
-const prefix = '/api/v1'
+const prefix = ''
 
 const app = express()
 app.use(cors())
