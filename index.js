@@ -22,17 +22,19 @@ app.get(`${prefix}`, (req, res) => {
     })
 })
 
-app.post(`${prefix}/workcity`, (req, res) => {
+app.get(`${prefix}/workcity`, (req, res) => {
     pool.getConnection((err, con) => {
         if(err){
             console.log(err)
         }else{
             console.log('db connected')
+            // const data = req.body
+            // console.log(data)
+            res.status(200).json({
+                msg: 'another route'
+            })
         }
     } )
-    const data = req.body
-    console.log(data)
-    res.status(200).json(data)
 })
 
 app.listen(port, () => {
