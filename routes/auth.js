@@ -24,6 +24,7 @@ function auth(){
             }else{
                 // console.log(data)
                 con.query('SELECT * FROM associates WHERE email = ?', (data.email), (err, user) => {
+                    con.release()
                     if(err){
                         res.status(500).json({
                             message: "Internal Server Error",
@@ -68,6 +69,7 @@ function auth(){
                 })
             }else{
                 con.query('SELECT * FROM associates WHERE email = ?', (data.email), (err, result) => {
+                    con.release()
                     if(err){
                         res.status(500).json({
                             message: "Internal Server Error",
@@ -89,8 +91,7 @@ function auth(){
                                         res.status(500).json({
                                             // message: "Internal Server Error"
                                             response: err.code,
-                                            message: err.message, 
-                                            formBody: data
+                                            message: err.message
                                         })
                                     }else{
                                         res.status(200).json({

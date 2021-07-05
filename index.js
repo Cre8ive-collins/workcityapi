@@ -23,13 +23,7 @@ app.use((req, res ,next) => {
 app.get(`${prefix}`, (req, res) => {
     // res.send(`${prefix}/${port}`)
     res.status(200).jsonp({
-        msg: 'Index route',
-        host: process.env.HOST,
-        host: process.env.HOST,
-        user: process.env.USER_NAME,
-        password: process.env.PASSWORD,
-        database: process.env.DB,
-
+        msg: 'Index route'
     })
 })
 
@@ -39,21 +33,8 @@ app.use('/auth', auth)
 const admin = require('./routes/admin')
 app.use('/admin', admin)
 
-app.get(`${prefix}/workcity`, (req, res) => {
-    pool.getConnection((err, con) => {
-        if(err){
-            console.log(err)
-            res.send(err)
-        }else{
-            console.log('db connected')
-            // const data = req.body
-            // console.log(data)
-            res.status(200).json({
-                msg: 'another route'
-            })
-        }
-    } )
-})
+const member = require('./routes/member')
+app.use('/member', member)
 
 // ERROR HANDLINGS 
 
