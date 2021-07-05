@@ -14,7 +14,7 @@ async function membershipmail(params) {
         port: 465,
         secure: true,
         auth: {
-            user: 'noreply@workcityafrica.com',
+            user: process.env.EMAIL,
             pass: process.env.MAIL_PASSWORD 
         },
     }));
