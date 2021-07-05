@@ -33,6 +33,9 @@ app.get(`${prefix}`, (req, res) => {
     })
 })
 
+const auth = require('./routes/auth')
+app.use('/auth', auth)
+
 const admin = require('./routes/admin')
 app.use('/admin', admin)
 
@@ -51,6 +54,23 @@ app.get(`${prefix}/workcity`, (req, res) => {
         }
     } )
 })
+
+// ERROR HANDLINGS 
+
+app.use((req, res, next) => {
+    const err = new Error('Not Found')
+    err.status = 404
+    next(err)
+  })
+  
+  app.use((err, req, res, next) => {
+    res.status(err.status || 500)
+    res.json({
+      error: {
+        message : err.message
+      }
+    })
+  })
 
 
 
