@@ -52,8 +52,50 @@ function admin(){
         }
     })
 
-    router.get('/', (req, res) => {
-        res.send(req.headers)
+    router.post('/addmember', (req, res) => {
+        // res.send(req.headers)
+        const data = req.body
+        pool.getConnection((err, con) => {
+            if(err){
+                res.status(500).json({
+                    message: "Internal Server Error",
+                    response: err.message
+                })
+            }else{
+                const query = `SELECT * FROM customerrecord WHERE email = ?`
+                con.query(query, data.email, (err, resposnse) => {
+                    if(err){
+                        res.status(500).json({
+                            message: "Internal Server Error",
+                            response: err.message
+                        })
+                    }else if(resposnse.length > 0.5){
+                        res.status(409).json({
+                            message: "Email Already Exists"
+                        })
+                    }else{
+
+                        const sql = `INSERT INTO customerrecord SET ? `
+                        con.query(sql, data, (err, result) => {
+                            con.release()
+                            if(err){
+                                res.status(500).json({
+                                    message: "Internal Server Error",
+                                    response: err.message
+                                })
+                            }else{
+                                console.log(data.email)
+                                // mailer.membershipmail(data)
+                                res.status(201).json({
+                                    message: "Created"
+                                })
+                            }
+                        })
+                    }
+                })
+            }
+        })
+
     })
     return router
 }

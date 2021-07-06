@@ -5,7 +5,7 @@ const pool = require('../config/dbconfig');
 require('dotenv').config()
 const mailer = require('../services/mail')
 
-function admin(){
+function member(){
 
     router.get('/', (req, res) => {
         const sql = `SELECT * FROM membersdata`
@@ -69,4 +69,4 @@ function admin(){
     return router
 }
 
-module.exports = admin()
+module.exports = member()
