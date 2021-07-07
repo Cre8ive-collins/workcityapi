@@ -3,6 +3,7 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const pool = require('../config/dbconfig');
 require('dotenv').config()
+const mailer = require('../services/mail')
 
 function admin(){
     router.use((req, res, next) => {
