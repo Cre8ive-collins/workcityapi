@@ -44,7 +44,7 @@ function auth(){
                             }else if(passed){
                                 const token = jwt.sign({id: user[0].id}, process.env.TOKEN_SECRET)
                                 res.status(200).json({
-                                    message: 'good credentials',
+                                    message: 'Auth Passed',
                                     token: token
                                 })
                             }else{
