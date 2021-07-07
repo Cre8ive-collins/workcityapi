@@ -23,8 +23,9 @@ function member(){
         })
     })
    
-    router.post('/', (req, res) => {
+    router.post('/accesspass', (req, res) => {
         const data = req.body
+        console.log(req.body)
         pool.getConnection((err, con) => {
             if(err){
                 res.status(500).json({
@@ -32,7 +33,7 @@ function member(){
                     response: err.message
                 })
             }else{
-                const query = `SELECT * FROM membersdata WHERE email = ?`
+                const query = `SELECT * FROM visitors WHERE email = ?`
                 con.query(query, data.email, (err, resposnse) => {
                     if(err){
                         res.status(500).json({
@@ -41,11 +42,11 @@ function member(){
                         })
                     }else if(resposnse.length > 0.5){
                         res.status(409).json({
-                            message: "Email Already Exists"
+                            message: "Access Granted"
                         })
                     }else{
 
-                        const sql = `INSERT INTO membersdata SET ? `
+                        const sql = `INSERT INTO visitors SET ? `
                         con.query(sql, data, (err, result) => {
                             con.release()
                             if(err){
@@ -55,9 +56,10 @@ function member(){
                                 })
                             }else{
                                 console.log(data.email)
-                                mailer.membershipmail(data)
+                                // mailer.membershipmail(data)
+                                mailer.accesspass(data.email)
                                 res.status(201).json({
-                                    message: "Created"
+                                    message: "Access Granted"
                                 })
                             }
                         })

@@ -85,7 +85,7 @@ function admin(){
                                 })
                             }else{
                                 console.log(data.email)
-                                // mailer.membershipmail(data)
+                                mailer.membershipmail(data)
                                 res.status(201).json({
                                     message: "Created"
                                 })

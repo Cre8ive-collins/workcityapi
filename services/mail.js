@@ -3,7 +3,29 @@ const smtpTransport = require('nodemailer-smtp-transport')
 const bcrypt = require('bcryptjs');
 require('dotenv').config()
 
+async function accesspass(email){
+        let transporter = nodemailer.createTransport(smtpTransport({
+            host: "webmail.workcityafrica.com",
+            tls:{
+                rejectUnauthorized: false
+            },
+            port: 465,
+            secure: true,
+            auth: {
+                user: process.env.EMAIL,
+                pass: process.env.MAIL_PASSWORD 
+            },
+        }));
 
+        let info = await transporter.sendMail({
+            from: '"Workcity Africa" <noreply@workcityafrica.com>', // sender address
+            to: email, // list of receivers
+            subject: "Welcome to our Community", // Subject line
+            html: `<h1>Access Pass</h1>`
+        })
+
+        console.log("Message sent: %s", info.messageId);
+}
 
 async function membershipmail(params) {
     let transporter = nodemailer.createTransport(smtpTransport({
@@ -184,4 +206,7 @@ async function membershipmail(params) {
 
 }
 
-module.exports = {membershipmail}
+module.exports = {
+    membershipmail,
+    accesspass
+}
