@@ -53,6 +53,58 @@ function admin(){
         }
     })
 
+
+    // router.get('/all', (req, res) => {
+    //     pool.getConnection((err, con) => {
+    //         if(err){
+    //             res.status(500).json({
+    //                 message: "Internal Server Error",
+    //                 response: err.message
+    //             })
+    //         }else if(con){
+    //             con.query(`SELECT * FROM customerrecord`, (err, results) => {
+    //                 if(err){
+    //                     res.status(500).json({
+    //                         message: "Internal Server Error",
+    //                         response: err.message
+    //                     })
+    //                 }else{
+    //                     res.status(200).json({
+    //                         members : results
+    //                     })
+    //                 }
+    //             })
+    //         }else{
+    //             res.status(500).json({
+    //                 message: "Internal Server Error",
+    //                 response: 'DB ERROR'
+    //             })
+    //         }
+    // })
+
+    router.get('/all', (req, res) => {
+        pool.getConnection((err, con) => {
+            if(err){
+                res.status(500).json({
+                    message: "Internal Server Error",
+                    response: err.message
+                })
+            }else{
+                con.query(`SELECT * FROM customerrecord`, (err, result) => {
+                    if (err){
+                        res.status(500).json({
+                            message: "Internal Server Error",
+                            response: err.message
+                        })
+                    }else{
+                        res.status(200).json({
+                            members : result
+                        })
+                    }
+                })
+            }
+        })
+    })
     router.post('/addmember', (req, res) => {
         // res.send(req.headers)
         const data = req.body
