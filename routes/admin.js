@@ -4,55 +4,38 @@ const jwt = require('jsonwebtoken');
 const pool = require('../config/dbconfig');
 require('dotenv').config()
 const mailer = require('../services/mail')
+const auth = require('../middlewares/auth')
 
 function admin(){
-    router.use((req, res, next) => {
-        const token = req.headers['token']
-        if(!token){
-            res.status(401).json({
-                message: "UnAuthorized Access",
-                eror: 'No token'
-            })
-        }else{
-            jwt.verify(token, process.env.TOKEN_SECRET, (err, decoded) => {
-                if(err){
-                    res.status(401).json({
-                        message: "UnAuthorized Access"
-                    })      
-                }else{
-                    const id = decoded.id
-                    pool.getConnection((err, con) => {
-                        if(err){
-                            res.status(500).json({
-                                message: "Internal Server Error",
-                                error: err.message
-                            })
-                        }else{
-                            con.query('SELECT * FROM associates WHERE id = ?', id, (err, result) => {
-                                if(err){ 
-                                    res.status(500).json({
-                                        id: id,
-                                        message: "Internal Server Error",
-                                        error: err.message
-                                    })
-                                }else if(result.length == 0 ){
-                                    res.status(500).json({
-                                        message: "Internal Server Error",
-                                        error: "No Result"
-                                    })
-                                }else{
-                                    const currentUser = result[0].name
-                                    res.header('user', currentUser)
-                                    next()
-                                }
-                            })
-                        }
-                    })
-                }
-            })
-        }
-    })
+    
+    router.use(auth)
 
+    router.get('/filter', (req, res) => {
+        const filterparam = req.query.filterby
+        const sql = `SELECT * FROM customerrecord WHERE plan = ${filterparam}`
+        pool.getConnection((err, con) => {
+            if(err){
+                res.status(500).json({
+                    message: "Internal Server Error",
+                    response: err.message
+                })
+            }else{
+                con.query(sql, (err, result) => {
+                    con.release()
+                    if (err){
+                        res.status(500).json({
+                            message: "Internal Server Error",
+                            response: err.message
+                        })
+                    }else{
+                        res.status(200).json({
+                            members : result
+                        })
+                    }
+                })
+            }
+        })
+    })
     router.get('/members', (req, res) => {
         pool.getConnection((err, con) => {
             if(err){
@@ -62,6 +45,7 @@ function admin(){
                 })
             }else{
                 con.query(`SELECT * FROM customerrecord`, (err, result) => {
+                    con.release()
                     if (err){
                         res.status(500).json({
                             message: "Internal Server Error",
@@ -88,6 +72,7 @@ function admin(){
             }else{
                 const query = `SELECT * FROM customerrecord WHERE email = ?`
                 con.query(query, data.email, (err, resposnse) => {
+                    con.release()
                     if(err){
                         res.status(500).json({
                             message: "Internal Server Error",
