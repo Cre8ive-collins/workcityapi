@@ -53,7 +53,7 @@ function admin(){
     //     }
     // })
 
-    router.get('/members', (req, res) => {
+    router.get('/', (req, res) => {
         pool.getConnection((err, con) => {
             if(err){
                 res.status(500).json({
