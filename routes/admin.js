@@ -21,7 +21,7 @@ function admin(){
                 })
             }else{
                 con.query(sql, (err, result) => {
-                    con.release()
+                     con.release()
                     if (err){
                         res.status(500).json({
                             message: "Internal Server Error",
@@ -45,17 +45,26 @@ function admin(){
                 })
             }else{
                 con.query(`SELECT * FROM customerrecord`, (err, result) => {
-                    con.release()
-                    if (err){
-                        res.status(500).json({
-                            message: "Internal Server Error",
-                            response: err.message
+                    con.query(`SELECT * FROM customerrecord WHERE plan = 'SD'`, (err, SD) => {
+                        con.query(`SELECT * FROM customerrecord WHERE plan = 'VP'`, (err, VP) => {
+                            con.query(`SELECT * FROM customerrecord WHERE plan = 'PO'`, (err, PO) => {
+                                con.release()
+                                if (err){
+                                    res.status(500).json({
+                                        message: "Internal Server Error",
+                                        response: err.message
+                                    })
+                                }else{
+                                    res.status(200).json({
+                                        members : result,
+                                        SD : SD,
+                                        VP: VP,
+                                        PO: PO
+                                    })
+                                }
+                            })
                         })
-                    }else{
-                        res.status(200).json({
-                            members : result
-                        })
-                    }
+                    })
                 })
             }
         })
@@ -72,7 +81,6 @@ function admin(){
             }else{
                 const query = `SELECT * FROM customerrecord WHERE email = ?`
                 con.query(query, data.email, (err, resposnse) => {
-                    con.release()
                     if(err){
                         res.status(500).json({
                             message: "Internal Server Error",

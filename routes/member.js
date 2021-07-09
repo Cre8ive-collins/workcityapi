@@ -23,7 +23,7 @@ function member(){
         })
     })
    
-    router.post('/accesspass', (req, res) => {
+    router.post('/accesspass', async (req, res) => {
         const data = req.body
         console.log(req.body)
         pool.getConnection((err, con) => {
@@ -34,20 +34,25 @@ function member(){
                 })
             }else{
                 const query = `SELECT * FROM visitors WHERE email = ?`
-                con.query(query, data.email, (err, resposnse) => {
+                con.query(query, data.email,async (err, resposnse) => {
                     if(err){
                         res.status(500).json({
                             message: "Internal Server Error",
                             response: err.message
                         })
                     }else if(resposnse.length > 0.5){
+                        try {
+                           await mailer.accesspass(data.email)
+                        } catch (error) {
+                            console.log(error)
+                        }
                         res.status(409).json({
                             message: "Access Granted"
                         })
                     }else{
 
                         const sql = `INSERT INTO visitors SET ? `
-                        con.query(sql, data, (err, result) => {
+                        con.query(sql, data, async (err, result) => {
                             con.release()
                             if(err){
                                 res.status(500).json({
@@ -56,8 +61,11 @@ function member(){
                                 })
                             }else{
                                 console.log(data.email)
-                                // mailer.membershipmail(data)
-                                mailer.accesspass(data.email)
+                                try {
+                                   await mailer.accesspass(data.email)
+                                } catch (error) {
+                                    console.log(error)
+                                }
                                 res.status(201).json({
                                     message: "Access Granted"
                                 })

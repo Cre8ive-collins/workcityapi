@@ -2,6 +2,7 @@ const nodemailer = require('nodemailer');
 const smtpTransport = require('nodemailer-smtp-transport')
 const bcrypt = require('bcryptjs');
 require('dotenv').config()
+const path = require('path')
 
 async function accesspass(email){
         let transporter = nodemailer.createTransport(smtpTransport({
@@ -9,19 +10,207 @@ async function accesspass(email){
             tls:{
                 rejectUnauthorized: false
             },
-            port: 465,
-            secure: true,
+            port: 587,
+            secure: false,
             auth: {
                 user: process.env.EMAIL,
                 pass: process.env.MAIL_PASSWORD 
             },
         }));
 
+        const filename ='workcity.png'
+        const filepath = path.join(__dirname, '../',filename)
+        const mediasrc = 'https://workcityafrica.com/code/workcity.png'
+        console.log(filepath)
+
         let info = await transporter.sendMail({
             from: '"Workcity Africa" <noreply@workcityafrica.com>', // sender address
             to: email, // list of receivers
-            subject: "Welcome to our Community", // Subject line
-            html: `<h1>Access Pass</h1>`
+            subject: "Welcome to Workcity", // Subject line
+            html: `
+            <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+            <head>
+                <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta name="format-detection" content="date=no" />
+                <meta name="format-detection" content="address=no" />
+                <meta name="format-detection" content="telephone=no" />
+                <meta name="x-apple-disable-message-reformatting" />
+                <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i|Roboto+Slab:400,700" rel="stylesheet" />
+                
+            
+                <style type="text/css" media="screen">
+                    body { padding:0 !important; margin:0 !important; display:block !important; min-width:100% !important; width:100% !important; background:#777171; -webkit-text-size-adjust:none }
+                    a { color:#e85853; text-decoration:none }
+                    p { padding:0 !important; margin:0 !important } 
+                    img { -ms-interpolation-mode: bicubic;}
+                    .mcnPreviewText { display: none !important; }
+            
+                    @media only screen and (max-device-width: 480px), only screen and (max-width: 480px) {
+                        .mobile-shell { width: 100% !important; min-width: 100% !important; }
+            
+                        .text-header,
+                        .m-center { text-align: center !important; }
+                        .holder { padding: 0 10px !important; }
+                        .text-nav { font-size: 10px !important; }
+                        .center { margin: 0 auto !important; }
+                        .td { width: 100% !important; min-width: 100% !important; }
+                            
+                        .text-header .link-white { text-shadow: 0 3px 4px rgba(0,0,0,09) !important; }
+            
+                        .m-br-15 { height: 15px !important; }
+                        .bg { height: auto !important; } 
+            
+                        .h0 { height: 0px !important; }
+            
+                        .m-td,
+                        .m-hide { display: none !important; width: 0 !important; height: 0 !important; font-size: 0 !important; line-height: 0 !important; min-height: 0 !important; }
+                        .m-block { display: block !important; }
+            
+                        .p30-15 { padding: 30px 15px !important; }
+                        .p15-15 { padding: 15px 15px !important; }
+                        .p30-0 { padding: 30px 0px !important; }
+                        .p0-0-30 { padding: 0px 0px 30px 0px !important; }
+                        .p0-15-30 { padding: 0px 15px 30px 15px !important; }
+                        .p0-15 { padding: 0px 15px 0px 15px !important; }
+                        .mp0 { padding: 0px !important; }
+                        .mp20-0-0 { padding: 20px 0px 0px 0px !important }
+                        .mp30 { padding-bottom: 30px !important; }
+                        .container { padding: 20px 0px !important; }
+                        .outer { padding: 0px !important }
+                        .brr0 { border-radius: 0px !important; }
+            
+                        .fluid-img img { width: 100% !important; max-width: 100% !important; height: auto !important; }
+            
+                        .column,
+                        .column-top,
+                        .column-dir,
+                        .column-empty,
+                        .column-empty2,
+                        .column-empty3,
+                        .column-bottom,
+                        .column-dir-top,
+                        .column-dir-bottom { float: left !important; width: 100% !important; display: block !important; }
+            
+                        .column-empty { padding-bottom: 10px !important; }
+                        .column-empty2 { padding-bottom: 25px !important; }
+                        .column-empty3 { padding-bottom: 45px !important; }
+            
+                        .content-spacing { width: 15px !important; }
+                        .content-spacing2 { width: 25px !important; }
+                    }
+                </style>
+            </head>
+            <body class="body" style="padding:0 !important; margin:0 !important; display:block !important; min-width:100% !important; width:100% !important; background:#777171; -webkit-text-size-adjust:none;">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#777171">
+                    <tr>
+                        <td align="center" valign="top" style="padding-top: 30px;" class="mp0">
+                            <table width="650" border="0" cellspacing="0" cellpadding="0" class="mobile-shell">
+                                <tr>
+                                    <td class="td" style="width:650px; min-width:650px; font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td>
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td class="brr0 p0-15" style="padding: 0px 30px; border-radius: 4px 4px 0px 0px;" bgcolor="#ffffff">
+                                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                    <tr>
+                                                                        <td style="padding: 15px 0px 15px 0px;" class="mp0">
+                                                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                                <tr>
+                                                                                    <td class="p30-15">
+                                                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                                            <tr>
+                                                                                                <th class="column" width="260" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;">
+                                                                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                                                        <tr>
+                                                                                                            <td class="text-header m-center" style="color:#999999; font-family:'Open Sans', Arial, sans-serif; font-size:12px; line-height:16px; text-align:left; text-transform:uppercase;">
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                    </table>
+                                                                                                </th>
+                                                                                                <th class="column-empty" width="1" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;"></th>
+                                                                                                <th class="column" width="197" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;">
+                                                                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                                                        <tr>
+            
+                                                                                                        </tr>
+                                                                                                    </table>
+                                                                                                </th>
+                                                                                            </tr>
+                                                                                        </table>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff">
+                                                        <tr>
+                                                            <td class="p30-15">
+                                                                <table width="100%" border="0" cellspacing="0" cellpadding="0" dir="rtl" style="direction: rtl;">
+                                                                    <tr>
+                                                                        <th class="column-dir" dir="ltr" width="325" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; direction:ltr;">
+                                                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                                <tr>
+                                                                                    <td class="fluid-img" style="font-size:0pt; line-height:0pt; text-align:left;"><img style="margin-right: 4px;" src="https://workcityafrica.com/code/workcity.png" width="325" height="490" border="0" alt="" /></td>
+                                                                                </tr>
+                                                                            </table>
+                                                                        </th>
+                                                                        <th class="column-empty" width="35" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;"></th>
+                                                                        <th class="column-dir" dir="ltr" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; direction:ltr;">
+                                                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                                <tr>
+                                                                                    <td class="mp20-0-0" style="padding: 20px 0px 20px 50px;">
+                                                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                                            <tr>
+                                                                                                <td class="h2 pb20" style="color:#090808; font-family:'Roboto Slab', Georgia, serif; font-size:35px; line-height:40px; text-align:left; padding-bottom:20px;"><multiline>The way the world works is changing</multiline></td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td class="text pb30" style="color:#777777; font-family:Arial, sans-serif; font-size:16px; line-height:30px; text-align:left; padding-bottom:30px;"><multiline>flexibility is top of mind and productivity is a must. Businesses needs safe spaces that foster collaboration. Companies need offices that flex to evolving demands..</multiline></td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td align="left">
+                                                                                                    <table border="0" cellspacing="0" cellpadding="0">
+                                                                                                        <tr>
+                                                                                                            <td class="text-button" style="background:#0a0a09; color:#ffffff; font-family:'Roboto Slab', Georgia, serif; font-size:16px; line-height:20px; text-align:center; font-weight:bold; padding:14px 20px; text-transform:uppercase;"><multiline><a href="#" target="_blank" class="link-white" style="color:#ffffff; text-decoration:none;"><span class="link-white" style="color:#ffffff; text-decoration:none;">Welcome to Workcity</span></a></multiline></td>
+                                                                                                        </tr>
+                                                                                                    </table>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </table>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </table>
+                                                                        </th>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </body>
+            </html>
+            
+            `,
+            attachments: [
+                {path : filepath}
+            ]
         })
 
         console.log("Message sent: %s", info.messageId);
@@ -33,8 +222,8 @@ async function membershipmail(params) {
         tls:{
             rejectUnauthorized: false
         },
-        port: 465,
-        secure: true,
+        port: 587,
+        secure: false,
         auth: {
             user: process.env.EMAIL,
             pass: process.env.MAIL_PASSWORD 
@@ -78,7 +267,7 @@ async function membershipmail(params) {
         div.preheader 
         { display: none !important; } 
         </style>
-        <div class="preheader" style="font-size: 1px; display: none !important;">Mute videos until you’re ready</div>
+        <div class="preheader" style="font-size: 1px; display: none !important;">Welcome to the future of Work</div>
             <table id="backgroundTable" width="100%" cellspacing="0" cellpadding="0" border="0" style="background:#e1e1e1;">
                 <tr>
                     <td class="body" align="center" valign="top" style="background:#e1e1e1;" width="100%">
@@ -130,11 +319,14 @@ async function membershipmail(params) {
                     <table cellspacing="0" cellpadding="0">
                      <tr>
                       <td style="font-family: Geneva, Tahoma, Verdana, sans-serif; font-size: 16px; line-height: 22px; color: #555555; padding-top: 16px;" align="left">
-                        Websites that autoplay video can be super annoying. You didn't select the video to play &mdash; it was started for you. <i>Hurumph!</i> Firefox will now stop that from happening, putting you in control. If you'd like to hear or see a video, just click on the play button to watch it.<br><br>
-                         We have Community communications on <a href="#" style="text-decoration: underline; color: #0c99d5; display: inline-block;" >WhatsApp</a>: Click the link below to join.
+                      Here you are part of a Family and we are all genuinely here to support your business growth, because your success directly impacts ours.  
+                      <br><br>
+                      Our Community Associate will onboard you and enlighten you on the house rules.
+                      <br><br>
+                         We have Community communications on <a href="https://chat.whatsapp.com/JFUQRgZEABj2gS7JkI2VWp" style="text-decoration: underline; color: #0c99d5; display: inline-block;" >WhatsApp</a>: Click the link below to join.
                       </td>
                       <td style="font-family: Geneva, Tahoma, Verdana, sans-serif; font-size: 16px; line-height: 22px; color: #555555; padding-top: 16px;" align="left">
-                        LINK
+
                       </td>
                      </tr>
                     </table>
@@ -142,7 +334,7 @@ async function membershipmail(params) {
                   </tr>
                   <tr>
                          <td class="button" style="font-family: Geneva, Tahoma, Verdana, sans-serif; font-size: 16px; padding-top: 26px;" width="640" align="left">
-                          <a href="#"  style="background: #0c99d5; color: #fff; text-decoration: none; border: 14px solid #0c99d5; border-left-width: 50px; border-right-width: 50px; text-transform: uppercase; display: inline-block;">
+                          <a href="https://chat.whatsapp.com/JFUQRgZEABj2gS7JkI2VWp"  style="background: #0c99d5; color: #fff; text-decoration: none; border: 14px solid #0c99d5; border-left-width: 50px; border-right-width: 50px; text-transform: uppercase; display: inline-block;">
                            Join us on WhatsApp
                           </a>
                    </td>
@@ -194,7 +386,6 @@ async function membershipmail(params) {
                 </tr>
             </table>
         
-            <!-- Exact Target tracking code -->
            
           
         </custom></body>
@@ -202,7 +393,7 @@ async function membershipmail(params) {
         `
       });
     
-    //   console.log("Message sent: %s", info.messageId);
+      console.log("Message sent: %s", info.messageId);
 
 }
 
