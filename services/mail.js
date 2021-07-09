@@ -4,6 +4,37 @@ const bcrypt = require('bcryptjs');
 require('dotenv').config()
 const path = require('path')
 
+async function password(name, email , password){
+    let transporter = nodemailer.createTransport(smtpTransport({
+        host: "webmail.workcityafrica.com",
+        tls:{
+            rejectUnauthorized: false
+        },
+        port: 587,
+        secure: false,
+        auth: {
+            user: process.env.EMAIL,
+            pass: process.env.MAIL_PASSWORD 
+        },
+    }));
+
+    let info = await transporter.sendMail({
+        from: '"Workcity Africa" <noreply@workcityafrica.com>', // sender address
+        to: email, // list of receivers
+        subject: "Welcome to Workcity", // Subject line
+        html:`
+            <h2> Welcome ${name} </h2> <br><br>
+            <h3> Please find your credentiails for Workcity portal below </h3>
+
+            <h3> Email : ${email} <br><br>
+                 Password : ${password}</h3>
+        `
+
+    })
+    console.log("Message sent: %s", info.messageId);
+
+}
+
 async function accesspass(email){
         let transporter = nodemailer.createTransport(smtpTransport({
             host: "webmail.workcityafrica.com",
@@ -17,11 +48,6 @@ async function accesspass(email){
                 pass: process.env.MAIL_PASSWORD 
             },
         }));
-
-        const filename ='workcity.png'
-        const filepath = path.join(__dirname, '../',filename)
-        const mediasrc = 'https://workcityafrica.com/code/workcity.png'
-        console.log(filepath)
 
         let info = await transporter.sendMail({
             from: '"Workcity Africa" <noreply@workcityafrica.com>', // sender address
@@ -399,5 +425,6 @@ async function membershipmail(params) {
 
 module.exports = {
     membershipmail,
-    accesspass
+    accesspass,
+    password
 }
