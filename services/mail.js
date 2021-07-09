@@ -233,10 +233,7 @@ async function accesspass(email){
             </body>
             </html>
             
-            `,
-            attachments: [
-                {path : filepath}
-            ]
+            `
         })
 
         console.log("Message sent: %s", info.messageId);
