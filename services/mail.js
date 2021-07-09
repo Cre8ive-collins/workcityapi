@@ -19,7 +19,7 @@ async function password(name, email , password){
     }));
 
     let info = await transporter.sendMail({
-        from: '"Workcity Africa" <noreply@workcityafrica.com>', // sender address
+        from: '"Workcity Africa" <collinswilson@softnoonng.com>', // sender address
         to: email, // list of receivers
         subject: "Welcome to Workcity", // Subject line
         html:`
@@ -63,7 +63,7 @@ async function accesspass(email){
         // }));
 
         let info = await transporter.sendMail({
-            from: '"Workcity Africa" <noreply@workcityafrica.com>', // sender address
+            from: '"Workcity Africa" <collinswilson@softnoonng.com>', // sender address
             to: email, // list of receivers
             subject: "Welcome to Workcity", // Subject line
             html: `
@@ -267,7 +267,7 @@ async function membershipmail(params) {
     }));
 
     let info = await transporter.sendMail({
-        from: '"Workcity Africa" <noreply@workcityafrica.com>', // sender address
+        from: '"Workcity Africa" <collinswilson@softnoonng.com>', // sender address
         to: params.email, // list of receivers
         subject: "Welcome to our Community", // Subject line
         html: `
