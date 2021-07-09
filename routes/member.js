@@ -46,8 +46,8 @@ function member(){
                         } catch (error) {
                             console.log(error)
                         }
-                        res.status(409).json({
-                            message: "Access Granted"
+                        res.status(200).json({
+                            message: "Check your email for Access Pass"
                         })
                     }else{
 
@@ -67,7 +67,7 @@ function member(){
                                     console.log(error)
                                 }
                                 res.status(201).json({
-                                    message: "Access Granted"
+                                    message: "Check your email for Access Pass"
                                 })
                             }
                         })
