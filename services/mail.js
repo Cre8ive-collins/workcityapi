@@ -6,14 +6,14 @@ const path = require('path')
 
 async function password(name, email , password){
     let transporter = nodemailer.createTransport(smtpTransport({
-        host: "webmail.workcityafrica.com",
+        host: "webmail.softnoonng.com",
         tls:{
             rejectUnauthorized: false
         },
         port: 587,
         secure: false,
         auth: {
-            user: process.env.EMAIL,
+            user: 'collinswilson@softnoonng.com',
             pass: process.env.MAIL_PASSWORD 
         },
     }));
@@ -36,18 +36,31 @@ async function password(name, email , password){
 }
 
 async function accesspass(email){
-        let transporter = nodemailer.createTransport(smtpTransport({
-            host: "webmail.workcityafrica.com",
-            tls:{
-                rejectUnauthorized: false
-            },
-            port: 587,
-            secure: false,
-            auth: {
-                user: process.env.EMAIL,
-                pass: process.env.MAIL_PASSWORD 
-            },
-        }));
+
+    let transporter = nodemailer.createTransport(smtpTransport({
+        host: "webmail.softnoonng.com",
+        tls:{
+            rejectUnauthorized: false
+        },
+        port: 587,
+        secure: false,
+        auth: {
+            user: 'collinswilson@softnoonng.com',
+            pass: process.env.MAIL_PASSWORD 
+        },
+    }));
+        // let transporter = nodemailer.createTransport(smtpTransport({
+        //     host: "webmail.softnoonng.com",
+        //     tls:{
+        //         rejectUnauthorized: false
+        //     },
+        //     port: 587,
+        //     secure: false,
+        //     auth: {
+        //         user: process.env.EMAIL,
+        //         pass: process.env.MAIL_PASSWORD 
+        //     },
+        // }));
 
         let info = await transporter.sendMail({
             from: '"Workcity Africa" <noreply@workcityafrica.com>', // sender address
@@ -241,14 +254,14 @@ async function accesspass(email){
 
 async function membershipmail(params) {
     let transporter = nodemailer.createTransport(smtpTransport({
-        host: "webmail.workcityafrica.com",
+        host: "webmail.softnoonng.com",
         tls:{
             rejectUnauthorized: false
         },
         port: 587,
         secure: false,
         auth: {
-            user: process.env.EMAIL,
+            user: 'collinswilson@softnoonng.com',
             pass: process.env.MAIL_PASSWORD 
         },
     }));
