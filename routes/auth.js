@@ -69,7 +69,6 @@ function auth(){
                 })
             }else{
                 con.query('SELECT * FROM associates WHERE email = ?', (data.email), (err, result) => {
-                    con.release()
                     if(err){
                         res.status(500).json({
                             message: "Internal Server Error",
