@@ -46,7 +46,7 @@ function admin(){
             }else{
                 con.query(`SELECT * FROM customerrecord`, (err, result) => {
                     con.query(`SELECT * FROM customerrecord WHERE plan = 'SD'`, (err, SD) => {
-                        con.query(`SELECT * FROM customerrecord WHERE plan = 'VP'`, (err, VP) => {
+                        con.query(`SELECT * FROM customerrecord WHERE plan = 'VO'`, (err, VP) => {
                             con.query(`SELECT * FROM customerrecord WHERE plan = 'PO'`, (err, PO) => {
                                 con.release()
                                 if (err){
