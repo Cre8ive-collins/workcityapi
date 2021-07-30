@@ -33,7 +33,7 @@ module.exports = ((req, res, next) => {
                             }else if(result.length == 0 ){
                                 res.status(500).json({
                                     message: "Internal Server Error",
-                                    error: "No Result"
+                                    error: "Invalid Token"
                                 })
                             }else{
                                 const currentUser = result[0].name

@@ -27,6 +27,9 @@ app.get(`${prefix}`, (req, res) => {
     })
 })
 
+const paymentstatus = require('./routes/paymentstatus')
+app.use('/status', paymentstatus)
+
 const auth = require('./routes/auth')
 app.use('/auth', auth)
 
@@ -36,10 +39,13 @@ app.use('/admin', admin)
 const member = require('./routes/member')
 app.use('/member', member)
 
+const modify = require('./routes/modify')
+app.use('/modify', modify)
+
 // ERROR HANDLINGS 
 
 app.use((req, res, next) => {
-    const err = new Error('Not Found')
+    const err = new Error('Invalid Route')
     err.status = 404
     next(err)
   })

@@ -24,7 +24,6 @@ function auth(){
                     response: err.message
                 })
             }else{
-                // console.log(data)
                 con.query('SELECT * FROM associates WHERE email = ?', (data.email), (err, user) => {
                     con.release()
                     if(err){
