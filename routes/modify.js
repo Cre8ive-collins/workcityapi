@@ -7,10 +7,6 @@ const auth = require('../middlewares/auth')
 function paymentstatus(){
 
     router.use(auth)
-    
-    router.get('/', (req, res) => {
-        res.send('modify')
-    })
 
     router.delete('/', (req, res) => {
         const {id} = req.body
