@@ -8,6 +8,12 @@ function paymentstatus(){
 
     router.use(auth)
 
+    router.get('/', (req, res) => {
+        res.status(200).json({
+            message: "welcomre "
+        })
+    })
+
     router.delete('/', (req, res) => {
         const {id} = req.body
         pool.getConnection((err, con) => {

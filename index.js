@@ -42,7 +42,7 @@ app.use('/member', member)
 const modify = require('./routes/modify')
 app.use('/modify', modify)
 
-// ERROR HANDLINGS 
+// INVALID ROUTES HANDLINGS 
 
 app.use((req, res, next) => {
     const err = new Error('Invalid Route')
