@@ -115,32 +115,32 @@ function admin(){
 
     })
 
-    router.delete('/delete', (req, res) => {
-        const {id} = req.body
-        pool.getConnection((err, con) => {
-            if(err){
-                res.status(500).json({
-                    message: "Internal server error",
-                    error: err.message
-                })
-            }else{
-                con.query(`DELETE FROM customerrecord WHERE id = ${id}` , (err, result) => {
-                    con.release()
-                    if(err){
-                        res.status(500).json({
-                            message: "Internal server error",
-                            error: err.message
-                        })
-                    }else{
-                        console.log(result)
-                        res.status(204).json({
-                            message: "Member Deleted"
-                        })
-                    }
-                })
-            }
-        })
-    })
+    // router.delete('/delete', (req, res) => {
+    //     const {id} = req.body
+    //     pool.getConnection((err, con) => {
+    //         if(err){
+    //             res.status(500).json({
+    //                 message: "Internal server error",
+    //                 error: err.message
+    //             })
+    //         }else{
+    //             con.query(`DELETE FROM customerrecord WHERE id = ${id}` , (err, result) => {
+    //                 con.release()
+    //                 if(err){
+    //                     res.status(500).json({
+    //                         message: "Internal server error",
+    //                         error: err.message
+    //                     })
+    //                 }else{
+    //                     console.log(result)
+    //                     res.status(204).json({
+    //                         message: "Member Deleted"
+    //                     })
+    //                 }
+    //             })
+    //         }
+    //     })
+    // })
 
     router.post('/update', (req, res) => {
         const {id} = req.body

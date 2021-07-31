@@ -27,6 +27,9 @@ app.get(`${prefix}`, (req, res) => {
     })
 })
 
+const modify = require('./routes/modify')
+app.use('/modify', modify)
+
 const paymentstatus = require('./routes/paymentstatus')
 app.use('/status', paymentstatus)
 
@@ -39,8 +42,6 @@ app.use('/admin', admin)
 const member = require('./routes/member')
 app.use('/member', member)
 
-const modify = require('./routes/modify')
-app.use('/modify', modify)
 
 // INVALID ROUTES HANDLINGS 
 
