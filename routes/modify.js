@@ -14,7 +14,7 @@ function paymentstatus(){
         })
     })
 
-    router.delete('/', (req, res) => {
+    router.delete('/delete', (req, res) => {
         const {id} = req.body
         pool.getConnection((err, con) => {
             if(err){
@@ -41,7 +41,7 @@ function paymentstatus(){
         })
     })
 
-    router.post('/', (req, res) => {
+    router.post('/update', (req, res) => {
         const {id} = req.body
         pool.getConnection((err, con) => {
             if(err){
