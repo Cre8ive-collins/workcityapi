@@ -10,6 +10,12 @@ function admin(){
     
     router.use(auth)
 
+    router.post('/test', (req, res) => {
+        res.status(200).json(
+            req.body
+        )
+    })
+
     router.get('/filter', (req, res) => {
         const filterparam = req.query.filterby
         const sql = `SELECT * FROM customerrecord WHERE plan = ${filterparam}`
